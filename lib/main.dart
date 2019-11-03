@@ -17,6 +17,35 @@ class _QuoteListState extends State<QuoteList> {
     Quote(author: "Oscar Wilde", text: "I have nothing to declare except my genius."),
     Quote(author: "Oscar Wilde", text: "The truth is rarely pure and never simple.")
   ];
+  
+  Widget quoteTemplate(q) {
+    return Card(
+      margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Text(
+              q.text,
+              style: TextStyle(
+                fontSize: 18,
+                color: Colors.grey[600],
+              ),
+            ),
+            SizedBox(height: 6.0,),
+            Text (
+              q.author,
+              style: TextStyle(
+                fontSize: 11,
+                color: Colors.grey,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +57,7 @@ class _QuoteListState extends State<QuoteList> {
         backgroundColor: Colors.redAccent,
       ),
       body: Column (
-        children: quotes.map((q) => Text("${q.text} -by ${q.author}") ).toList(),
+        children: quotes.map((q) => quoteTemplate(q)).toList(),
       ),
     );
   }
